@@ -1,0 +1,27 @@
+/register:
+  post:
+    tags:
+      - Internal
+    summary: Register a new user
+    requestBody:
+      $ref: "#/components/requestBodies/Register"
+    responses:
+      '200':
+        description: Successful operation
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                code:
+                  type: integer
+                  example: 0
+                message:
+                  type: string
+                  example: "ok"
+                data:
+                  $ref: "#/components/schemas/Token"
+      "401":
+        $ref: "#/components/responses/Standard401ErrorResponse"
+      "4XX":
+        $ref: "#/components/responses/Standard4XXErrorResponse"

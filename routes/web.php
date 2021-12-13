@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ApiDocumentController;
+use App\Http\Controllers\HealthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SwaggerAssetController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/api/health-check', [HealthController::class, 'index']);
+Route::get('/api/documentation', [ApiDocumentController::class, 'index']);
+Route::get('/api/docs', [ApiDocumentController::class, 'docs'])->name('api.docs');
+Route::get('/asset/{asset}', [SwaggerAssetController::class, 'index'])->name('swagger.asset');

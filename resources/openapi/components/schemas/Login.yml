@@ -1,0 +1,17 @@
+Login:
+  type: object
+  properties:
+    email:
+      description: Email address of the user. reqiured if phone is not provided.
+      type: string
+      example: "xx@xx.com"
+    phone:
+      description: Phone number of the user. phone number should be in E.164 format. required if email is not provided.
+      type: string
+      example: "+8618612320231"
+    password:
+      description: Password of the user.
+      type: string
+      example: "pass123"
+  required:
+    - password

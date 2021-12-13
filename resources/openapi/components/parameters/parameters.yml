@@ -1,0 +1,7 @@
+RedirectUriParam:
+  in: query
+  name: redirect_uri
+  description: The redirect URI of the provider
+  schema:
+    type: string
+  example: https://example.com/callback

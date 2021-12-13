@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "458869c2160f66c6c9cbf719522cd908",
+    "content-hash": "bdd5b529f7b01b8572b332d0c7f05cea",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2845,6 +2845,56 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "softonic/laravel-middleware-request-id",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/softonic/laravel-middleware-request-id.git",
+                "reference": "ca392671e1c22facdca34ff30bcef8221d2fe21b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/softonic/laravel-middleware-request-id/zipball/ca392671e1c22facdca34ff30bcef8221d2fe21b",
+                "reference": "ca392671e1c22facdca34ff30bcef8221d2fe21b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": ">7.0",
+                "php": ">=7.4",
+                "ramsey/uuid": "^4.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Softonic\\Laravel\\Middleware\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jose Manuel Cardona",
+                    "email": "josemanuel.cardona@softonic.com"
+                }
+            ],
+            "description": "Middleware for Laravel Framework to add the X-Request-ID header in the requests and responses.",
+            "keywords": [
+                "laravel",
+                "middleware",
+                "tracking"
+            ],
+            "support": {
+                "issues": "https://github.com/softonic/laravel-middleware-request-id/issues",
+                "source": "https://github.com/softonic/laravel-middleware-request-id/tree/v2.1.0"
+            },
+            "time": "2021-06-28T14:58:22+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
