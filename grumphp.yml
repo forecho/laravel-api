@@ -1,0 +1,8 @@
+grumphp:
+  tasks:
+    phpcsfixer:
+      config: .php-cs-fixer.dist.php
+      verbose: true
+      diff: true
+      triggered_by:
+        - php
