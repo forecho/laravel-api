@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bdd5b529f7b01b8572b332d0c7f05cea",
+    "content-hash": "1be14ae5ce11ce4a9167e81e8472bd35",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -496,6 +496,54 @@
                 }
             ],
             "time": "2020-12-29T14:50:06+00:00"
+        },
+        {
+            "name": "forecho/laravel-trace-log",
+            "version": "v0.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/forecho/laravel-trace-log.git",
+                "reference": "b556cadf6ddfcccb81cc2071163f32f32928fd1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/forecho/laravel-trace-log/zipball/b556cadf6ddfcccb81cc2071163f32f32928fd1e",
+                "reference": "b556cadf6ddfcccb81cc2071163f32f32928fd1e",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^7.0 || ^8.0",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Forecho\\LaravelTraceLog\\TraceLogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Forecho\\LaravelTraceLog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "forecho",
+                    "email": "caizhenghai@gmail.com"
+                }
+            ],
+            "description": "trace log for laravel",
+            "support": {
+                "issues": "https://github.com/forecho/laravel-trace-log/issues",
+                "source": "https://github.com/forecho/laravel-trace-log/tree/v0.0.5"
+            },
+            "time": "2022-01-19T06:32:15+00:00"
         },
         {
             "name": "fruitcake/laravel-cors",
@@ -2845,56 +2893,6 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
-        },
-        {
-            "name": "softonic/laravel-middleware-request-id",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/softonic/laravel-middleware-request-id.git",
-                "reference": "ca392671e1c22facdca34ff30bcef8221d2fe21b"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/softonic/laravel-middleware-request-id/zipball/ca392671e1c22facdca34ff30bcef8221d2fe21b",
-                "reference": "ca392671e1c22facdca34ff30bcef8221d2fe21b",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/http": ">7.0",
-                "php": ">=7.4",
-                "ramsey/uuid": "^4.0.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Softonic\\Laravel\\Middleware\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Jose Manuel Cardona",
-                    "email": "josemanuel.cardona@softonic.com"
-                }
-            ],
-            "description": "Middleware for Laravel Framework to add the X-Request-ID header in the requests and responses.",
-            "keywords": [
-                "laravel",
-                "middleware",
-                "tracking"
-            ],
-            "support": {
-                "issues": "https://github.com/softonic/laravel-middleware-request-id/issues",
-                "source": "https://github.com/softonic/laravel-middleware-request-id/tree/v2.1.0"
-            },
-            "time": "2021-06-28T14:58:22+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

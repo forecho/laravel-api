@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use Forecho\LaravelTraceLog\TraceLog;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 
 class HealthController extends Controller
 {
@@ -20,10 +20,11 @@ class HealthController extends Controller
         } catch (\Exception $e) {
             $status = 'unhealthy';
             $data['mysql'] = 'Could not connect to the database.  Please check your configuration.';
-            Log::error('connect-fail', ['type' => 'mysql', 'exception' => (string)$e]);
+            TraceLog::error('connect-fail', ['type' => 'mysql', 'exception' => (string)$e]);
         }
 
         return response()->json([
+            'trace_id' => TraceLog::getTraceId(),
             'status' => $status,
             'data' => $data,
         ]);

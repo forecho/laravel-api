@@ -2,11 +2,11 @@
 
 namespace App\Exceptions;
 
+use Forecho\LaravelTraceLog\TraceLog;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
@@ -117,7 +117,7 @@ class Handler extends ExceptionHandler
         }
 
         if (!($e instanceof NotFoundHttpException || $e instanceof MethodNotAllowedHttpException)) {
-            Log::error(
+            TraceLog::error(
                 'ExceptionHandler',
                 [
                     'url' => $request->fullUrl(),
@@ -128,7 +128,7 @@ class Handler extends ExceptionHandler
                 ],
             );
         }
-        $data = ['code' => $exceptionCode, 'message' => $message];
+        $data = ['trace_id' => TraceLog::getTraceId(), 'code' => $exceptionCode, 'message' => $message];
         if (config('app.debug')) {
             $data['trace'] = $e->getTrace();
         }

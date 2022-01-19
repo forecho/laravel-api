@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Forecho\LaravelTraceLog\TraceLog;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -27,6 +28,7 @@ class CustomApiMiddleware
         }
 
         return response([
+            'trace_id' => TraceLog::getTraceId(),
             'code' => 0,
             'data' => $content,
             'message' => 'ok',

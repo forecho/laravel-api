@@ -11,12 +11,12 @@
     "php": "^7.3|^8.0",
     "ext-json": "*",
     "ext-pdo": "*",
+    "forecho/laravel-trace-log": "^0.0.5",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
     "laravel/framework": "^8.65",
     "laravel/sanctum": "^2.11",
-    "laravel/tinker": "^2.5",
-    "softonic/laravel-middleware-request-id": "^2.1"
+    "laravel/tinker": "^2.5"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.10",
