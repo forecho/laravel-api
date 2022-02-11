@@ -63,26 +63,25 @@ class Handler extends ExceptionHandler
      * @param  Throwable  $e
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|Response
      */
-    public function render($request, Throwable $e)
+    public function render($request, Throwable $e): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|Response
     {
         $message = $e->getMessage();
         $exceptionCode = $e->getCode() > 0 ? $e->getCode() : ErrorCodes::INTERNAL_ERROR;
         $statusCode = $this->getStatusCode($e);
-        $eClass = get_class($e);
 
-        switch ($eClass) {
-            case ValidationException::class:
+        switch (true) {
+            case $e instanceof ValidationException:
                 $exceptionCode = ErrorCodes::INVALID_ARGUMENT_ERROR;
                 /** @var ValidationException $e */
                 $message = $e->validator->errors()->first();
 
                 break;
-            case ModelNotFoundException::class:
+            case $e instanceof ModelNotFoundException:
                 $exceptionCode = ErrorCodes::RECORD_NOT_FOUND;
                 $message = 'No query results';
 
                 break;
-            case QueryException::class:
+            case $e instanceof QueryException:
                 // SQL error
                 $exceptionCode = ErrorCodes::INTERNAL_ERROR;
                 if (!config('app.debug')) {
@@ -91,7 +90,7 @@ class Handler extends ExceptionHandler
                 }
 
                 break;
-            case AuthenticationException::class:
+            case $e instanceof AuthenticationException:
                 $exceptionCode = ErrorCodes::UNAUTHENTICATED;
                 $statusCode = Response::HTTP_UNAUTHORIZED;
 
@@ -128,7 +127,7 @@ class Handler extends ExceptionHandler
                 ],
             );
         }
-        $data = ['trace_id' => TraceLog::getTraceId(), 'code' => $exceptionCode, 'message' => $message];
+        $data = ['trace_id' => TraceLog::getTraceId(), 'code' => $exceptionCode, 'message' => $message,];
         if (config('app.debug')) {
             $data['trace'] = $e->getTrace();
         }
