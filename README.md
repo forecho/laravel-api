@@ -29,6 +29,8 @@ Fix code style
 
 ```shell
 vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php
+// or
+composer php-cs-fixer
 ```
 
 Make Swagger API documentation
