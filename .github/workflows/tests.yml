@@ -21,8 +21,8 @@ jobs:
           coverage: xdebug
       - name: Install dependencies
         run: composer install --no-progress --prefer-dist --no-interaction
-      - name: Init
+      - name: Init project
         run: |
-          php artisan generate:key
+          php artisan key:generate
       - name: PHPUnit check
         run: ./vendor/bin/phpunit --coverage-text
