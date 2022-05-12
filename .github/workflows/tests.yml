@@ -7,22 +7,18 @@ on:
 
 
 jobs:
-  phpunit:
-    strategy:
-      matrix:
-        php_version: [ 8.0 ]
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup PHP environment
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: ${{ matrix.php_version }}
-          coverage: xdebug
-      - name: Install dependencies
-        run: composer install --no-progress --prefer-dist --no-interaction
-      - name: Init project
+
+      - name: Composer Setup
         run: |
-          php artisan key:generate
-      - name: PHPUnit check
-        run: ./vendor/bin/phpunit --coverage-text
+          composer install -q --no-ansi --no-interaction --no-progress --prefer-dist
+      - uses: php-actions/phpunit@v3
+        with:
+          configuration: phpunit.xml
+          memory_limit: 256M
+          php_version: 8
+          version: 8.5
+          php_extensions: yaml
