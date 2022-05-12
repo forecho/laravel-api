@@ -30,13 +30,5 @@ Fix code style
 ```shell
 vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php
 // or
-composer php-cs-fixer
+composer fix-style
 ```
-
-Make Swagger API documentation
-
-```shell
-php artisan openapi:generate
-```
-
-http://localhost:8000/api/documentation
