@@ -1,7 +1,0 @@
-Register:
-  content:
-    application/json:
-      schema:
-        $ref: "#/components/schemas/Register"
-  description: Register a new user.
-  required: true

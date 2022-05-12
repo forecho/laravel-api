@@ -46,7 +46,6 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Cors::class,
             \App\Http\Middleware\CustomApiMiddleware::class,
-            \Softonic\Laravel\Middleware\RequestId::class,
         ],
     ];
 

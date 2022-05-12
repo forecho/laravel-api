@@ -2,14 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Utils\Setup;
 use Forecho\LaravelTraceLog\TraceLog;
-use Illuminate\Auth\AuthenticationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Validation\ValidationException;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -17,18 +13,27 @@ use Throwable;
 class Handler extends ExceptionHandler
 {
     /**
+     * A list of exception types with their corresponding custom log levels.
+     *
+     * @var array<class-string<\Throwable>, \Psr\Log\LogLevel::*>
+     */
+    protected $levels = [
+        //
+    ];
+
+    /**
      * A list of the exception types that are not reported.
      *
-     * @var string[]
+     * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
         //
     ];
 
     /**
-     * A list of the inputs that are never flashed for validation exceptions.
+     * A list of the inputs that are never flashed to the session on validation exceptions.
      *
-     * @var string[]
+     * @var array<int, string>
      */
     protected $dontFlash = [
         'current_password',
@@ -48,6 +53,14 @@ class Handler extends ExceptionHandler
         });
     }
 
+    /**
+     * Report or log an exception.
+     *
+     * @param  \Throwable  $e
+     * @return void
+     *
+     * @throws \Throwable
+     */
     public function report(Throwable $e)
     {
         if (app()->bound('sentry') && $this->shouldReport($e)) {
@@ -57,88 +70,46 @@ class Handler extends ExceptionHandler
         parent::report($e);
     }
 
-
     /**
+     * Render an exception into an HTTP response.
+     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Throwable  $e
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response|Response
+     * @param  \Throwable  $e
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Throwable
      */
-    public function render($request, Throwable $e): \Illuminate\Http\Response|\Illuminate\Http\JsonResponse|Response
+    public function render($request, Throwable $e)
     {
-        $message = $e->getMessage();
-        $exceptionCode = $e->getCode() > 0 ? $e->getCode() : ErrorCodes::INTERNAL_ERROR;
-        $statusCode = $this->getStatusCode($e);
-
-        switch (true) {
-            case $e instanceof ValidationException:
-                $exceptionCode = ErrorCodes::INVALID_ARGUMENT_ERROR;
-                /** @var ValidationException $e */
-                $message = $e->validator->errors()->first();
-
-                break;
-            case $e instanceof ModelNotFoundException:
-                $exceptionCode = ErrorCodes::RECORD_NOT_FOUND;
-                $message = 'No query results';
-
-                break;
-            case $e instanceof QueryException:
-                // SQL error
-                $exceptionCode = ErrorCodes::INTERNAL_ERROR;
-                if (!config('app.debug')) {
-                    $exceptionCode = ErrorCodes::INTERNAL_ERROR;
-                    $message = 'SQL error';
-                }
-
-                break;
-            case $e instanceof AuthenticationException:
-                $exceptionCode = ErrorCodes::UNAUTHENTICATED;
-                $statusCode = Response::HTTP_UNAUTHORIZED;
-
-                break;
-            default:
-                switch ($statusCode) {
-                    case Response::HTTP_NOT_FOUND:
-                        $message = 'Not found';
-
-                        break;
-                    case Response::HTTP_METHOD_NOT_ALLOWED:
-                        $message = 'Method Not Allowed';
-
-                        break;
-                    case Response::HTTP_TOO_MANY_REQUESTS:
-                        $exceptionCode = ErrorCodes::TOO_MANY_REQUESTS;
-
-                        break;
-                    default:
-                }
-
-                break;
-        }
-
         if (!($e instanceof NotFoundHttpException || $e instanceof MethodNotAllowedHttpException)) {
-            TraceLog::error(
+            Log::error(
                 'ExceptionHandler',
                 [
                     'url' => $request->fullUrl(),
-                    'message' => $message,
-                    'code' => $exceptionCode,
-                    'request' => (array)$request->getContent(),
-                    'exception' => (string)$e,
+                    'message' => $e->getMessage(),
+                    'code' => $e->getCode(),
+                    'request' => json_encode($request->all()),
+                    'exception' => Setup::filterNewline((string)$e),
                 ],
             );
         }
-        $data = ['trace_id' => TraceLog::getTraceId(), 'code' => $exceptionCode, 'message' => $message,];
-        if (config('app.debug')) {
-            $data['trace'] = $e->getTrace();
-        }
 
-        return response()->json($data, $statusCode);
+        return parent::render($request, $e);
     }
 
-
-    protected function getStatusCode(Throwable $e): int
+    /**
+     * Convert the given exception to an array.
+     *
+     * @param  \Throwable  $e
+     * @return array
+     */
+    protected function convertExceptionToArray(Throwable $e)
     {
-        return $e instanceof HttpExceptionInterface ?
-            $e->getStatusCode() : Response::HTTP_INTERNAL_SERVER_ERROR;
+        $base = [
+            config('tracelog.trace_id_header_key') => TraceLog::getTraceId(),
+        ];
+        $array = parent::convertExceptionToArray($e);
+
+        return array_merge($base, $array);
     }
 }

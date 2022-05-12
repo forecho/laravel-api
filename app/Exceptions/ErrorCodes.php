@@ -8,6 +8,7 @@ class ErrorCodes
     public const RECORD_NOT_FOUND = 42001;
     public const UNAUTHENTICATED = 42002;
     public const TOO_MANY_REQUESTS = 42008;
+    public const INVALID_CREDENTIALS = 43000;
 
 
     public const INTERNAL_ERROR = 50000;

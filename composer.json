@@ -14,21 +14,24 @@
     "forecho/laravel-trace-log": "^0.1.1",
     "fruitcake/laravel-cors": "^2.0",
     "guzzlehttp/guzzle": "^7.0.1",
-    "laravel/framework": "^9.0",
+    "laravel/framework": "^9.11",
     "laravel/tinker": "^2.5"
   },
   "require-dev": {
     "barryvdh/laravel-ide-helper": "^2.10",
-    "spatie/laravel-ignition": "^1.0",
+    "captainhook/plugin-composer": "^5.3",
     "fakerphp/faker": "^1.9.1",
     "friendsofphp/php-cs-fixer": "^3.2",
+    "jetbrains/phpstorm-attributes": "^1.0",
     "lanin/laravel-api-debugger": "^4.0",
-    "laravel/sail": "^1.0.1",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",
-    "phpro/grumphp": "^1.5",
+    "nunomaduro/larastan": "^2.1",
     "phpunit/phpunit": "^9.5.10",
-    "swagger-api/swagger-ui": "^4.1"
+    "psalm/plugin-laravel": "^2.0",
+    "ramsey/conventional-commits": "^1.3",
+    "spatie/laravel-ignition": "^1.0",
+    "vimeo/psalm": "^4.10"
   },
   "autoload": {
     "psr-4": {
@@ -62,11 +65,15 @@
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
     ],
-    "php-cs-fixer": "php-cs-fixer fix"
+    "fix-style": "php-cs-fixer fix --using-cache=no --ansi",
+    "psalm": "psalm --show-info=true --no-cache"
   },
   "extra": {
     "laravel": {
       "dont-discover": []
+    },
+    "captainhook": {
+      "force-install": true
     }
   },
   "config": {

@@ -1,7 +1,0 @@
-Login:
-  content:
-    application/json:
-      schema:
-        $ref: "#/components/schemas/Login"
-  description: Login
-  required: true

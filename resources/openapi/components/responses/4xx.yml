@@ -1,6 +1,0 @@
-Standard4XXErrorResponse:
-  description: Bad Request
-  content:
-    application/json:
-      schema:
-        $ref: "#/components/schemas/Error"
