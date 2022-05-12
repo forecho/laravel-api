@@ -7,16 +7,6 @@ on:
 
 
 jobs:
-  phpcs:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup PHP environment
-        uses: shivammathur/setup-php@v2
-      - name: Install dependencies
-        run: composer install --no-progress --prefer-dist --no-interaction
-      - name: PHPCSFixer check
-        run: composer check-style
   phpunit:
     strategy:
       matrix:
@@ -30,6 +20,9 @@ jobs:
           php-version: ${{ matrix.php_version }}
           coverage: xdebug
       - name: Install dependencies
-        run: composer install
+        run: composer install --no-progress --prefer-dist --no-interaction
+      - name: Init
+        run: |
+          php artisan generate:key
       - name: PHPUnit check
         run: ./vendor/bin/phpunit --coverage-text
