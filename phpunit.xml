@@ -22,7 +22,7 @@
         </whitelist>
     </filter>
     <php>
-        <server name="APP_ENV" value="example"/>
+        <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="file"/>
         <!-- <server name="DB_CONNECTION" value="sqlite"/> -->
