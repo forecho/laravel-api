@@ -18,7 +18,7 @@ class ApiDocumentController extends Controller
     {
         $filePath = storage_path('openapi/api-docs.yml');
 
-        if (!File::exists($filePath)) {
+        if (! File::exists($filePath)) {
             abort(404, 'Cannot find '.$filePath);
         }
 

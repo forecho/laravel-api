@@ -16,7 +16,6 @@ class Controller extends BaseController
     use DispatchesJobs;
     use ValidatesRequests;
 
-
     public function success(array|string $result): JsonResponse
     {
         return response()->json($result, Response::HTTP_OK);
