@@ -15,7 +15,7 @@ jobs:
       - name: Composer Setup
         run: |
           composer install -q --no-ansi --no-interaction --no-progress --prefer-dist
-      - uses: php-actions/phpunit@v3
+      - uses: php-actions/phpunit@v9
         with:
           configuration: phpunit.xml
           memory_limit: 256M
