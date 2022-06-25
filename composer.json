@@ -21,9 +21,9 @@
     "barryvdh/laravel-ide-helper": "^2.10",
     "captainhook/plugin-composer": "^5.3",
     "fakerphp/faker": "^1.9.1",
-    "friendsofphp/php-cs-fixer": "^3.2",
     "jetbrains/phpstorm-attributes": "^1.0",
     "lanin/laravel-api-debugger": "^4.0",
+    "laravel/pint": "^0.2.0",
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^6.1",
     "nunomaduro/larastan": "^2.1",
@@ -65,7 +65,7 @@
     "post-create-project-cmd": [
       "@php artisan key:generate --ansi"
     ],
-    "fix-style": "php-cs-fixer fix --using-cache=no --ansi",
+    "fix-style": "pint",
     "psalm": "psalm --show-info=true --no-cache"
   },
   "extra": {

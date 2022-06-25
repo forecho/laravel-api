@@ -20,7 +20,7 @@ class HealthController extends Controller
         } catch (\Exception $e) {
             $status = 'unhealthy';
             $data['mysql'] = 'Could not connect to the database.  Please check your configuration.';
-            TraceLog::error('connect-fail', ['type' => 'mysql', 'exception' => (string)$e]);
+            TraceLog::error('connect-fail', ['type' => 'mysql', 'exception' => (string) $e]);
         }
 
         return response()->json([

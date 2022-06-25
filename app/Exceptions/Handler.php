@@ -81,7 +81,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
-        if (!($e instanceof NotFoundHttpException || $e instanceof MethodNotAllowedHttpException)) {
+        if (! ($e instanceof NotFoundHttpException || $e instanceof MethodNotAllowedHttpException)) {
             Log::error(
                 'ExceptionHandler',
                 [
@@ -89,7 +89,7 @@ class Handler extends ExceptionHandler
                     'message' => $e->getMessage(),
                     'code' => $e->getCode(),
                     'request' => json_encode($request->all()),
-                    'exception' => Setup::filterNewline((string)$e),
+                    'exception' => Setup::filterNewline((string) $e),
                 ],
             );
         }
