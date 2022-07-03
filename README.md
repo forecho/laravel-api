@@ -28,7 +28,7 @@ http://localhost:8000/
 Fix code style
 
 ```shell
-vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php
+vendor/bin/pint
 // or
 composer fix-style
 ```

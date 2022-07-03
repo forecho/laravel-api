@@ -2,10 +2,8 @@
 
 namespace App\Exceptions;
 
-use App\Utils\Setup;
 use Forecho\LaravelTraceLog\TraceLog;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -82,14 +80,14 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $e)
     {
         if (! ($e instanceof NotFoundHttpException || $e instanceof MethodNotAllowedHttpException)) {
-            Log::error(
+            TraceLog::error(
                 'ExceptionHandler',
                 [
                     'url' => $request->fullUrl(),
                     'message' => $e->getMessage(),
                     'code' => $e->getCode(),
                     'request' => json_encode($request->all()),
-                    'exception' => Setup::filterNewline((string) $e),
+                    'exception' => $e->getTrace(),
                 ],
             );
         }

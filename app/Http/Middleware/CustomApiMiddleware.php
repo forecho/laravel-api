@@ -28,7 +28,7 @@ class CustomApiMiddleware
         }
 
         return response([
-            'trace_id' => TraceLog::getTraceId(),
+            config('tracelog.trace_id_header_key') => TraceLog::getTraceId(),
             'code' => 0,
             'data' => $content,
             'message' => 'ok',

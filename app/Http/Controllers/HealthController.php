@@ -24,7 +24,7 @@ class HealthController extends Controller
         }
 
         return response()->json([
-            'trace_id' => TraceLog::getTraceId(),
+            config('tracelog.trace_id_header_key') => TraceLog::getTraceId(),
             'status' => $status,
             'data' => $data,
         ]);

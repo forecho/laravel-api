@@ -50,7 +50,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['daily', 'daily_error', 'stdout'],
             'ignore_exceptions' => false,
         ],
 
@@ -65,6 +65,27 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => 14,
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => ['allowInlineLineBreaks' => false],
+        ],
+
+        'daily_error' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/error-laravel.log'),
+            'level' => 'error',
+            'days' => 180,
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => ['allowInlineLineBreaks' => false],
+        ],
+
+        'stdout' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'with' => [
+                'stream' => 'php://stdout',
+            ],
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => ['allowInlineLineBreaks' => false],
         ],
 
         'slack' => [
