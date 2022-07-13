@@ -7322,16 +7322,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v0.2.2",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "eba9393bc51ac4ab6ab78ab91a658784119f7b51"
+                "reference": "45c9fe899abfeeb7794c5a8c4074c140250a84c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/eba9393bc51ac4ab6ab78ab91a658784119f7b51",
-                "reference": "eba9393bc51ac4ab6ab78ab91a658784119f7b51",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/45c9fe899abfeeb7794c5a8c4074c140250a84c2",
+                "reference": "45c9fe899abfeeb7794c5a8c4074c140250a84c2",
                 "shasum": ""
             },
             "require": {
@@ -7384,7 +7384,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2022-07-01T17:44:52+00:00"
+            "time": "2022-07-13T17:57:52+00:00"
         },
         {
             "name": "mockery/mockery",
