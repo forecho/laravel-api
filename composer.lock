@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fbce97c65a7497fe5a4bbd70cab06075",
+    "content-hash": "650fcc473971b55308cca7e4e86d378a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7322,16 +7322,16 @@
         },
         {
             "name": "laravel/pint",
-            "version": "v0.2.2",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/pint.git",
-                "reference": "eba9393bc51ac4ab6ab78ab91a658784119f7b51"
+                "reference": "16cccd66169f926308fefb21ddbc03a261ca7e79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/pint/zipball/eba9393bc51ac4ab6ab78ab91a658784119f7b51",
-                "reference": "eba9393bc51ac4ab6ab78ab91a658784119f7b51",
+                "url": "https://api.github.com/repos/laravel/pint/zipball/16cccd66169f926308fefb21ddbc03a261ca7e79",
+                "reference": "16cccd66169f926308fefb21ddbc03a261ca7e79",
                 "shasum": ""
             },
             "require": {
@@ -7384,7 +7384,7 @@
                 "issues": "https://github.com/laravel/pint/issues",
                 "source": "https://github.com/laravel/pint"
             },
-            "time": "2022-07-01T17:44:52+00:00"
+            "time": "2022-07-26T15:32:23+00:00"
         },
         {
             "name": "mockery/mockery",
