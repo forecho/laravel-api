@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\JsonCheckerMiddleware;
+use Forecho\LaravelTraceLog\Middleware\TraceLogMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -43,9 +45,11 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\ForceJsonResponse::class,
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
+            'request.tracelog',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\Cors::class,
             \App\Http\Middleware\CustomApiMiddleware::class,
+            'json_checker',
         ],
     ];
 
@@ -66,5 +70,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'request.tracelog' => TraceLogMiddleware::class,
+        'json_checker' => JsonCheckerMiddleware::class,
     ];
 }

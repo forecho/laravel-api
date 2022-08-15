@@ -19,6 +19,9 @@ class CustomApiMiddleware
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
+        if (!$response instanceof \Illuminate\Http\JsonResponse) {
+            return $response;
+        }
         if ($response->status() == Response::HTTP_FOUND) {
             return $response;
         }
