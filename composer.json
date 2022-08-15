@@ -79,7 +79,10 @@
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "captainhook/plugin-composer": true
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
