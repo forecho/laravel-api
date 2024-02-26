@@ -11,7 +11,7 @@ class InternalException extends HttpException
         $message = null,
         $code = ErrorCodes::INTERNAL_ERROR,
         $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR,
-        \Exception $previous = null,
+        ?\Exception $previous = null,
         array $headers = []
     ) {
         parent::__construct($statusCode, $message, $previous, $headers, $code);

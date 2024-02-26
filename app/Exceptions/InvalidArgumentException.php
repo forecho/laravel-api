@@ -11,7 +11,7 @@ class InvalidArgumentException extends HttpException
         $message = null,
         $code = ErrorCodes::INVALID_ARGUMENT_ERROR,
         $statusCode = Response::HTTP_UNPROCESSABLE_ENTITY,
-        \Exception $previous = null,
+        ?\Exception $previous = null,
         array $headers = []
     ) {
         parent::__construct($statusCode, $message, $previous, $headers, $code);

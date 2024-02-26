@@ -11,7 +11,7 @@ class InvalidCredentialsException extends HttpException
         $message = null,
         $code = ErrorCodes::INVALID_CREDENTIALS,
         $statusCode = Response::HTTP_UNAUTHORIZED,
-        \Exception $previous = null,
+        ?\Exception $previous = null,
         array $headers = []
     ) {
         parent::__construct($statusCode, $message, $previous, $headers, $code);
